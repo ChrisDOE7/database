@@ -14,3 +14,9 @@ header {
     background-color: #66ccff;
     text-align: center;
 }
+
+p {
+    font-size: 20px;
+    font-weight: bold;
+
+}
