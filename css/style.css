@@ -1,22 +1,27 @@
 * {
-    margin: 0px;
-    padding: 0px;
+   margin: 0px;
+   padding: 0px;
 }
 
 body {
-    max-width: 500px;
-    background-image: url("/src/img/pokemon-bg.jpg");
-    background-repeat: no-repeat;
-    background-color: white;
+   max-width: 500px;
+   background-image: url("/src/img/pokemon-bg.jpg");
+   background-repeat: no-repeat;
+   background-color: white;
 }
 
 header {
-    background-color: #66ccff;
-    text-align: center;
+   background-color: #66ccff;
+   text-align: center;
 }
 
 p {
-    font-size: 20px;
-    font-weight: bold;
+   font-size: 20px;
+   font-weight: bold;
+}
 
+.pokemonButton {
+   background-color: aqua;
+   width: 150px;
+   text-align: left;
 }
