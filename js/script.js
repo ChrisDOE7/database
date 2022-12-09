@@ -1,79 +1,95 @@
-let pokemonRepository = (function () {
+let pokemonRepository = (function() {
    let pokemonList = [
       {
          name: "Bulbasur",
          ID: "#1",
          height: 0.7,
-         type: ["Monster", " Grass"],
+         type: ["Monster", " Grass"]
       },
       {
          name: "Charmander",
          ID: "#4",
          height: 0.6,
-         type: ["Monster", " Dragon"],
+         type: ["Monster", " Dragon"]
       },
       {
          name: "Charizard",
          ID: "#6",
          height: 1.7,
-         type: ["Monster", " Dragon"],
+         type: ["Monster", " Dragon"]
       },
       {
          name: "Squirtle",
          ID: "#7",
          height: 0.5,
-         type: ["Monster", " Water"],
+         type: ["Monster", " Water"]
       },
       {
          name: "Caterpie",
          ID: "#10",
          height: 0.3,
-         type: "Bug",
+         type: ["Bug"]
       },
       {
          name: "Weedle",
          ID: "#13",
          height: 0.3,
-         type: "Bug",
-      },
+         type: ["Bug"]
+      }
    ];
 
+   function getAll() {
+      return pokemonList;
+   }
+
+   function add(pokemon) {
+      if (
+         typeof pokemon === "object" &&
+         "name" in pokemon &&
+         "height" in pokemon &&
+         "types" in pokemon
+      ) {
+         pokemonList.push(pokemon);
+         console.log("Done");
+      } else {
+         console.log("pokemon is not correct");
+      }
+   }
+
+   function filterPokemon(pokemonName) {
+      return pokemonList.filter(
+         p => p.name.toLowerCase() === pokemonName.toLowerCase()
+      );
+   }
+
    function addListItem(pokemon) {
-      let pokemonList = document.querySelector("ul");
+      let pokemonList = document.querySelector(".pokemon-list");
       let listItem = document.createElement("li");
       let button = document.createElement("button");
       button.innerText = pokemon.name;
       button.classList.add("pokemonButton");
       listItem.appendChild(button);
       pokemonList.appendChild(listItem);
+      button.addEventListener("click", function() {
+         showDetails(pokemon.name);
+      });
+   }
+
+   function showDetails(pokemon) {
+      console.log(pokemon);
    }
 
    return {
-      getAll: function () {
-         return pokemonList;
-      },
-
-      add: function (pokemon) {
-         if (typeof pokemon === "object") {
-            pokemonList.push(pokemon);
-            console.log("Done");
-         } else {
-            return "No Pokemon, dude!";
-         }
-      },
-
-      filterPokemon: function (pokemonName) {
-         return pokemonList.filter(
-            (p) => p.name.toLowerCase() === pokemonName.toLowerCase()
-         );
-      },
-
+      getAll,
+      add,
+      filterPokemon,
       addListItem,
+      showDetails
    };
 })();
 
-pokemonRepository.getAll().forEach((item) => {
-   return addListItem();
+pokemonRepository.getAll().forEach(function(pokemon) {
+   pokemonRepository.addListItem(pokemon);
 });
 
 // function printPokemonList() {

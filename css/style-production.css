@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 2 version
+*/
+
 * {
     margin: 0px;
     padding: 0px;
@@ -32,10 +39,20 @@ li {
 .pokemon-list {
     text-align: center;
     padding-top: 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
     flex-flow: row wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
     flex-grow: 1;
     gap: 15px;
 }
@@ -50,7 +67,10 @@ li {
     margin: 3px;
     min-width: 250px;
     text-align: center;
+    -webkit-box-shadow: 4px 3px 19px 0px rgba(0, 0, 0, 0.3);
     box-shadow: 4px 3px 19px 0px rgba(0, 0, 0, 0.3);
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
@@ -59,7 +79,9 @@ li {
     background-color: #00d8d8;
     cursor: pointer;
     opacity: 0.8;
+    -webkit-box-shadow: none;
     box-shadow: none;
+    -webkit-transition: 0.5s;
     transition: 0.5s;
 }
 
@@ -81,6 +103,7 @@ li {
 @media all and (min-width: 550px) and (max-width: 750px) {
 
     .pokemonButton {
+        -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
     }
 }

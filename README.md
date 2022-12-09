@@ -1,6 +1,6 @@
 # First Project: Database
 
-## Description
+## 📄Description
 
 Building a small web application that loads data from an external API and enables the viewing of data points in detail.
 Nothing to set up for now.
