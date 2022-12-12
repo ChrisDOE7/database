@@ -17,6 +17,13 @@ main {
     height: 500px;
 }
 
+div {
+    z-index: -1;
+    text-align: center;
+    font-size: 30px;
+
+}
+
 
 header {
     background-color: #ff6680;
