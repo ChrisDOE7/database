@@ -13,8 +13,7 @@ body {
 }
 
 main {
-    background-image: url(/src/img/pokemon-bg-big.png);
-    height: 500px;
+    background: #003333;
 }
 
 div {
@@ -36,6 +35,14 @@ li {
     list-style: none;
 }
 
+.modal img {
+    overflow: auto;
+    display: block;
+    height: 200px;
+    margin: 0px auto 0px auto;
+    border-radius: 5px;
+}
+
 .pokemon-list {
     text-align: center;
     padding-top: 15px;
@@ -53,12 +60,11 @@ li {
     border: none;
     border-radius: 5px;
     background-color: aqua;
-    padding: 15px;
+    padding: 15px 5px;
     margin: 3px;
     min-width: 250px;
     text-align: center;
     box-shadow: 4px 3px 19px 0px rgba(0, 0, 0, 0.3);
-    justify-content: space-between;
 }
 
 .pokemonButton:hover,
@@ -68,6 +74,87 @@ li {
     opacity: 0.8;
     box-shadow: none;
     transition: 0.5s;
+}
+
+#modal-container {
+    display: none;
+}
+
+#modal-container.is-visible {
+    position: fixed;
+    padding: 20px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    /* to show it above other content */
+    z-index: 999;
+
+    /* to allow scrolling if the screen is not high enough*/
+    overflow: auto;
+
+    /* this is used to center the modal */
+    display: grid;
+    text-align: center;
+}
+
+.modal {
+    margin: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    background-image: linear-gradient(to bottom right, #003333, #000000, #003333);
+    padding: 15px;
+    width: auto;
+    border-radius: 5px;
+    justify-content: center;
+}
+
+.modal-title {
+    text-align: center;
+    color: white;
+}
+
+.modal-close {
+    float: right;
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    color: #99ffff;
+    text-decoration: underline;
+}
+
+.modal-close:hover {
+    cursor: pointer;
+}
+
+.modal img {
+    overflow: auto;
+    display: block;
+    height: 200px;
+    margin: 0px auto 0px auto;
+    border-radius: 5px;
+}
+
+.modal h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    background-color: #006666;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.modal p {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #00d8d8;
+    color: black;
+    margin-bottom: 2px;
+    padding-left: 5px;
+    font-size: 18px;
+    border-radius: 5px;
 }
 
 /* GRID FALLBACK

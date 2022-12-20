@@ -20,6 +20,7 @@ let pokemonRepository = (function() {
          "name" in pokemon // &&
          // "detailsUrl" in pokemon
       ) {
+         pokemon.name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
          pokemonList.push(pokemon);
          console.log("Done");
       } else {
@@ -32,9 +33,12 @@ let pokemonRepository = (function() {
    }
 
    function filterPokemon(pokemonName) {
-      return pokemonList.filter(
-         p => p.name.toLowerCase() === pokemonName.toLowerCase()
-      );
+      return pokemonList
+         .filter(p => p.name.toLowerCase() === pokemonName.toLowerCase())
+         .map(p => {
+            p.name = p.name[0].toUpperCase() + p.name.slice(1);
+            return p;
+         });
    }
 
    function addListItem(pokemon) {
@@ -85,8 +89,10 @@ let pokemonRepository = (function() {
             // Now we add the details to the item
             item.imageUrl = details.sprites.front_default;
             item.height = details.height;
-            item.types = details.types;
+            item.weight = details.weight;
+            item.types = details.types.type;
             item.id = details.id;
+            item.location = details.location;
          })
          .catch(function(e) {
             hideLoadingMessage();
@@ -96,9 +102,94 @@ let pokemonRepository = (function() {
 
    function showDetails(pokemon) {
       loadDetails(pokemon).then(function() {
-         console.log(pokemon);
+         showModal(pokemon);
       });
    }
+
+   function showModal(item) {
+      let modalContainer = document.querySelector("#modal-container");
+
+      modalContainer.innerHTML = "";
+
+      let modal = document.createElement("div");
+      modal.classList.add("modal");
+
+      let closeButtonElement = document.createElement("button");
+      closeButtonElement.classList.add("modal-close");
+      closeButtonElement.innerText = "close";
+      closeButtonElement.addEventListener("click", hideModal);
+
+      let imageElement = document.createElement("img");
+      imageElement.classList.add("pokemon-image");
+      imageElement.src = item.imageUrl;
+
+      let titleElement = document.createElement("h1");
+      titleElement.classList.add("modal-title");
+      titleElement.innerText = item.name;
+
+      let idElement = document.createElement("p");
+      idElement.innerText = "ID: #" + item.id;
+
+      let heightElement = document.createElement("p");
+      heightElement.innerText = "Height: " + item.height / 10 + " m";
+
+      let weightElement = document.createElement("p");
+      weightElement.innerText = "Weight: " + item.weight + " lbs";
+
+      // let typesElement = document.createElement("p");
+      // typesElement.innerText = "Type: " + item.type;
+
+      // let regionElement = document.createElement("p");
+      // regionElement.innerText = "Region: " + item.location;
+
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(imageElement);
+      modal.appendChild(titleElement);
+      modal.appendChild(idElement);
+      modal.appendChild(heightElement);
+      modal.appendChild(weightElement);
+      // modal.appendChild(typesElement);
+      // modal.appendChild(regionElement);
+      modalContainer.appendChild(modal);
+
+      modalContainer.classList.add("is-visible");
+
+      modalContainer.addEventListener("click", e => {
+         let target = e.target;
+         if (target === modalContainer) {
+            hideModal();
+         }
+      });
+   }
+
+   function hideModal() {
+      let modalContainer = document.querySelector("#modal-container");
+      modalContainer.classList.remove("is-visible");
+   }
+
+   window.addEventListener("keydown", e => {
+      let modalContainer = document.querySelector("#modal-container");
+      if (
+         e.key === "Escape" &&
+         modalContainer.classList.contains("is-visible")
+      ) {
+         hideModal();
+      }
+   });
+
+   window.addEventListener("keydown", e => {
+      let modalContainer = document.querySelector("#modal-container");
+      if (
+         e.key === "Escape" &&
+         modalContainer.classList.contains("is-visible")
+      ) {
+         hideModal();
+      }
+   });
+
+   document.querySelector("#show-modal").addEventListener("click", () => {
+      showModal("Modal title", "this is the modal content!");
+   });
 
    return {
       add,
