@@ -108,7 +108,8 @@ li {
     background-image: linear-gradient(to bottom right, #003333, #000000, #003333);
     padding: 15px;
     width: auto;
-    border-radius: 5px;
+    border: 3px solid #ff00ff;
+    border-radius: 10px;
     justify-content: center;
 }
 
