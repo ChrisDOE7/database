@@ -1,4 +1,4 @@
-let pokemonRepository = (function() {
+let pokemonRepository = (function () {
    let pokemonList = [];
    let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=151";
 
@@ -34,8 +34,8 @@ let pokemonRepository = (function() {
 
    function filterPokemon(pokemonName) {
       return pokemonList
-         .filter(p => p.name.toLowerCase() === pokemonName.toLowerCase())
-         .map(p => {
+         .filter((p) => p.name.toLowerCase() === pokemonName.toLowerCase())
+         .map((p) => {
             p.name = p.name[0].toUpperCase() + p.name.slice(1);
             return p;
          });
@@ -44,12 +44,14 @@ let pokemonRepository = (function() {
    function addListItem(pokemon) {
       let pokemonList = document.querySelector(".pokemon-list");
       let listItem = document.createElement("li");
+      listItem.classList.add("group-list-item");
       let button = document.createElement("button");
+      button.classList.add("btn-primary");
       button.innerText = pokemon.name;
       button.classList.add("pokemonButton");
       listItem.appendChild(button);
       pokemonList.appendChild(listItem);
-      button.addEventListener("click", function() {
+      button.addEventListener("click", function () {
          showDetails(pokemon);
       });
    }
@@ -57,21 +59,21 @@ let pokemonRepository = (function() {
    function loadList() {
       showLoadingMessage();
       return fetch(apiUrl)
-         .then(function(response) {
+         .then(function (response) {
             return response.json();
          })
-         .then(function(json) {
+         .then(function (json) {
             hideLoadingMessage();
-            json.results.forEach(function(item) {
+            json.results.forEach(function (item) {
                let pokemon = {
                   name: item.name,
-                  detailsUrl: item.url
+                  detailsUrl: item.url,
                };
                add(pokemon);
                console.log(pokemon);
             });
          })
-         .catch(function(e) {
+         .catch(function (e) {
             hideLoadingMessage();
             console.error(e);
          });
@@ -81,10 +83,10 @@ let pokemonRepository = (function() {
       showLoadingMessage();
       let url = item.detailsUrl;
       return fetch(url)
-         .then(function(response) {
+         .then(function (response) {
             return response.json();
          })
-         .then(function(details) {
+         .then(function (details) {
             hideLoadingMessage();
             // Now we add the details to the item
             item.imageUrl = details.sprites.front_default;
@@ -94,14 +96,14 @@ let pokemonRepository = (function() {
             item.id = details.id;
             item.location = details.location;
          })
-         .catch(function(e) {
+         .catch(function (e) {
             hideLoadingMessage();
             console.error(e);
          });
    }
 
    function showDetails(pokemon) {
-      loadDetails(pokemon).then(function() {
+      loadDetails(pokemon).then(function () {
          showModal(pokemon);
       });
    }
@@ -154,7 +156,7 @@ let pokemonRepository = (function() {
 
       modalContainer.classList.add("is-visible");
 
-      modalContainer.addEventListener("click", e => {
+      modalContainer.addEventListener("click", (e) => {
          let target = e.target;
          if (target === modalContainer) {
             hideModal();
@@ -167,7 +169,7 @@ let pokemonRepository = (function() {
       modalContainer.classList.remove("is-visible");
    }
 
-   window.addEventListener("keydown", e => {
+   window.addEventListener("keydown", (e) => {
       let modalContainer = document.querySelector("#modal-container");
       if (
          e.key === "Escape" &&
@@ -177,7 +179,7 @@ let pokemonRepository = (function() {
       }
    });
 
-   window.addEventListener("keydown", e => {
+   window.addEventListener("keydown", (e) => {
       let modalContainer = document.querySelector("#modal-container");
       if (
          e.key === "Escape" &&
@@ -200,12 +202,12 @@ let pokemonRepository = (function() {
       loadDetails,
       showDetails,
       showLoadingMessage,
-      hideLoadingMessage
+      hideLoadingMessage,
    };
 })();
 
-pokemonRepository.loadList().then(function() {
-   pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.loadList().then(function () {
+   pokemonRepository.getAll().forEach(function (pokemon) {
       pokemonRepository.addListItem(pokemon);
    });
 });
