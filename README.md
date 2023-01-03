@@ -1,4 +1,4 @@
-# First Project: Database
+# First Project: Database (Pokédex API)
 
 ## 📄Description
 
@@ -18,6 +18,16 @@ This database will show something similar to a "Pokedex".
 -  CSS
 -  Javascript
 
+## Frameworks
+
+-  Bootstrap for Modal
+-  JQuery
+
 ## Sources
 
 [Pokedex](https://pokedex.org)
+
+⚠️ 
+## Known issues
+- last Pokémon is not showing the details modal on click
+- search input on top isn't setup up atm. 
