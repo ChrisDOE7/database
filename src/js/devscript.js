@@ -1,30 +1,30 @@
 let pokemonRepository = (function() {
    let pokemonList = [];
-   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=151";
+   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
    function showLoadingMessage() {
-      let loadingMessage = document.createElement("div");
-      loadingMessage.innerHTML = "Loading...";
-      loadingMessage.id = "loadingMessage";
+      let loadingMessage = document.createElement('div');
+      loadingMessage.innerHTML = 'Loading...';
+      loadingMessage.id = 'loadingMessage';
       document.body.appendChild(loadingMessage);
    }
 
    function hideLoadingMessage() {
-      let loadingMessage = document.getElementById("loadingMessage");
+      let loadingMessage = document.getElementById('loadingMessage');
       document.body.removeChild(loadingMessage);
    }
 
    function add(pokemon) {
       if (
-         typeof pokemon === "object" &&
-         "name" in pokemon // &&
+         typeof pokemon === 'object' &&
+         'name' in pokemon // &&
          // "detailsUrl" in pokemon
       ) {
          pokemon.name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
          pokemonList.push(pokemon);
-         console.log("Done");
+         console.log('Done');
       } else {
-         console.log("pokemon is not correct");
+         console.log('pokemon is not correct');
       }
    }
 
@@ -42,23 +42,23 @@ let pokemonRepository = (function() {
    }
 
    function addListItem(pokemon) {
-      let pokemonList = document.querySelector(".list-group");
-      let listItem = document.createElement("button");
+      let pokemonList = document.querySelector('.list-group');
+      let listItem = document.createElement('button');
       listItem.innerText = pokemon.name;
       listItem.classList.add(
-         "list-group-item",
-         "list-group-item-action",
-         "btn",
-         "btn-primary",
-         "pokemon-button"
+         'list-group-item',
+         'list-group-item-action',
+         'btn',
+         'btn-primary',
+         'pokemon-button'
       );
-      $(".list-group-item").attr("data-toggle", "modal");
-      $(".list-group-item").attr("type", "button");
-      $(".list-group-item").attr("data-target", "#exampleModal");
+      $('.list-group-item').attr('data-toggle', 'modal');
+      $('.list-group-item').attr('type', 'button');
+      $('.list-group-item').attr('data-target', '#exampleModal');
 
-      listItem.toggleAttribute("modal");
+      listItem.toggleAttribute('modal');
       pokemonList.appendChild(listItem);
-      listItem.addEventListener("click", function() {
+      listItem.addEventListener('click', function() {
          showDetails(pokemon);
       });
    }
@@ -116,23 +116,23 @@ let pokemonRepository = (function() {
    }
 
    function showModal(item) {
-      let modalBody = $(".modal-body");
-      let modalTitle = $(".modal-title");
-      let modalHeader = $(".modal-header");
+      let modalBody = $('.modal-body');
+      let modalTitle = $('.modal-title');
+      // let modalHeader = $('.modal-header');
 
       modalTitle.empty();
       modalBody.empty();
 
-      let titleElement = $("<h1>" + item.name + "<h1>");
+      let titleElement = $('<h1>' + item.name + '<h1>');
       let imageElement = $(
          '<img class="modal-img mx-auto d-block" width="200px">'
       );
-      imageElement.attr("src", item.imageUrl);
-      imageElement.attr("alt", "front image of the selected pokemon");
-      let idElement = $("<p>ID: " + item.id + "</p>");
-      let heightElement = $("<p>Height: " + item.height / 10 + " m</p>");
-      let weightElement = $("<p>Weight: " + item.weight + " lbs</p>");
-      let typeElement = $("<p>Type: " + item.types + "</p>");
+      imageElement.attr('src', item.imageUrl);
+      imageElement.attr('alt', 'front image of the selected pokemon');
+      let idElement = $('<p>ID: ' + item.id + '</p>');
+      let heightElement = $('<p>Height: ' + item.height / 10 + ' m</p>');
+      let weightElement = $('<p>Weight: ' + item.weight + ' lbs</p>');
+      let typeElement = $('<p>Type: ' + item.types + '</p>');
 
       modalTitle.append(titleElement);
       modalBody.append(imageElement);

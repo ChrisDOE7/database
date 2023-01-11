@@ -27,7 +27,14 @@ This database will show something similar to a "Pokedex".
 
 [Pokedex](https://pokedex.org)
 
-⚠️ 
+⚠️
 ## Known issues
 - last Pokémon is not showing the details modal on click
-- search input on top isn't setup up atm. 
+- search input on top isn't setup up atm.
+
+# ESLint config:
+"rules": {
+    "quotes": ["error", "single"],
+    "no-console": "off",
+    "no-undef": "off"
+  }

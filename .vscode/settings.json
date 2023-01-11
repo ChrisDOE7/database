@@ -1,4 +1,5 @@
 {
    "editor.formatOnSave": false,
-   "editor.suggestSelection": "recentlyUsed"
+   "editor.suggestSelection": "recentlyUsed",
+   "eslint.alwaysShowStatus": true
 }
